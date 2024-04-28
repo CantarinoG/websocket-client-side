@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:websocket_client_side/models/web_socket_service_base.dart';
 import 'package:websocket_client_side/screens/home_page.dart';
 import 'package:websocket_client_side/services/websocket_service.dart';
 
 void main() {
-  runApp(const MyApp());
+  const String endpoint = "wss://echo.websocket.org/";
+  final WebsocketServiceBase websocketService = WebsocketService(endpoint);
+
+  runApp(MyApp(
+    websocketService: websocketService,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  final String endpoint = "wss://echo.websocket.org/";
-
-  const MyApp({super.key});
+  final WebsocketServiceBase websocketService;
+  const MyApp({super.key, required this.websocketService});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: HomePage(
-        webSocketService: WebsocketService(endpoint),
+        webSocketService: websocketService,
       ),
     );
   }

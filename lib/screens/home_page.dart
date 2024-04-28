@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:websocket_client_side/services/websocket_service.dart';
+import 'package:websocket_client_side/models/web_socket_service_base.dart';
 
 class HomePage extends StatefulWidget {
-  final WebsocketService webSocketService;
+  final WebsocketServiceBase webSocketService;
   const HomePage({super.key, required this.webSocketService});
 
   @override
